@@ -16,7 +16,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { OloLinkState, RailId, ViewMode } from '@/hooks/use-ololink';
+import type { OloLinkState, RailId } from '@/hooks/use-ololink';
 import { type ScenarioId } from '@/lib/ololink';
 
 /** Scenario simulation entries shown in the rail. */
