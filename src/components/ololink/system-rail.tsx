@@ -178,6 +178,7 @@ export function SystemRail({ state }: { state: OloLinkState }) {
             key={item.id}
             item={item}
             isActive={state.scenarioId === item.id}
+            view={state.view}
             disabled={state.aiProcessing}
             onSelect={state.setScenario}
           />
