@@ -82,15 +82,18 @@ function RailButton({
 function ScenarioRailButton({
   item,
   isActive,
+  view,
   disabled,
   onSelect,
 }: {
   item: (typeof SCENARIOS_RAIL)[number];
   isActive: boolean;
+  view: '3d' | '2d';
   disabled: boolean;
   onSelect: (id: ScenarioId) => void;
 }) {
   const Icon = item.icon;
+  const activeColor = view === '3d' ? 'text-sky-300' : 'text-black';
   return (
     <button
       type="button"
@@ -102,18 +105,11 @@ function ScenarioRailButton({
         'group relative flex h-[46px] w-[46px] items-center justify-center rounded-[12px] outline-none transition-all duration-150',
         'focus-visible:ring-1 focus-visible:ring-sky-400/60 disabled:opacity-50',
         isActive
-          ? 'bg-sky-500/[0.14] text-sky-300'
+          ? cn('bg-sky-500/[0.14]', activeColor)
           : 'text-muted-foreground/60 hover:bg-white/[0.05] hover:text-foreground active:scale-[0.96]'
       )}
     >
       <Icon className="h-[18px] w-[18px]" strokeWidth={1.5} />
-
-      <span
-        className={cn(
-          'absolute left-0 top-1/2 w-[2px] -translate-y-1/2 rounded-r bg-sky-400 transition-all duration-200',
-          isActive ? 'h-7 opacity-100' : 'h-0 opacity-0'
-        )}
-      />
 
       <span className="pointer-events-none absolute left-[64px] z-50 hidden -translate-x-1 whitespace-nowrap rounded-md border border-white/[0.08] bg-[#0a0f1c]/95 px-2.5 py-1.5 opacity-0 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.9)] backdrop-blur-xl transition-all duration-150 group-hover:translate-x-0 group-hover:opacity-100 md:block">
         <span className="block text-[10px] uppercase tracking-[0.2em] text-foreground">
