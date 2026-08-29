@@ -285,5 +285,6 @@ export function useOloLink(): OloLinkState {
     toggleLayer: (k) => setLayers((l) => ({ ...l, [k]: !l[k] })),
     setRunning,
     approve: () => push('OK', `Operator approved: ${profile.ai.action}`),
+    reset,
   };
 }
