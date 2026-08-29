@@ -1,6 +1,6 @@
 'use client';
 
-import { Satellite } from 'lucide-react';
+import { RotateCcw, Satellite } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { OloLinkState } from '@/hooks/use-ololink';
 import { formatT } from '@/hooks/use-ololink';
