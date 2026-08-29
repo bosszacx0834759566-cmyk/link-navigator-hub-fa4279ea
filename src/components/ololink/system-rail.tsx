@@ -132,6 +132,7 @@ export function SystemRail({ state }: { state: OloLinkState }) {
           <RailButton
             item={item}
             isActive={active === item.id}
+            view={state.view}
             onToggle={() => onToggle(item.id)}
           />
         </div>
