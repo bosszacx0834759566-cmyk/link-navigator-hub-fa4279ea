@@ -96,6 +96,8 @@ export interface OloLinkState {
   toggleLayer: (k: keyof OloLinkState['layers']) => void;
   setRunning: (v: boolean) => void;
   approve: () => void;
+  /** reset every comm/link signal: scenario, windows, routes, telemetry, clock */
+  reset: () => void;
 }
 
 
@@ -221,6 +223,24 @@ export function useOloLink(): OloLinkState {
     [scenarioId, push]
   );
 
+  const reset = useCallback(() => {
+    clock.current = 0;
+    counter.current = 0;
+    setMissionTime(0);
+    setScenarioId('clear');
+    setSelection(null);
+    setAiProcessing(false);
+    setPreviousRoute(null);
+    setReroutingIds(new Set());
+    setTelemetry(SCENARIOS.clear.telemetry);
+    setWindows({});
+    setRunning(true);
+    setEvents([
+      { id: 'e0', time: 'T+00:00', level: 'INFO', text: 'Orchestration session reset' },
+      { id: 'e1', time: 'T+00:00', level: 'OK', text: 'All laser/comm links re-initialised' },
+    ]);
+  }, []);
+
   const links = useMemo(() => linkStates(profile, reroutingIds), [profile, reroutingIds]);
   const route = useMemo(() => routeSegments(profile.route, profile.routeSegmentIds), [profile]);
 
@@ -265,5 +285,6 @@ export function useOloLink(): OloLinkState {
     toggleLayer: (k) => setLayers((l) => ({ ...l, [k]: !l[k] })),
     setRunning,
     approve: () => push('OK', `Operator approved: ${profile.ai.action}`),
+    reset,
   };
 }

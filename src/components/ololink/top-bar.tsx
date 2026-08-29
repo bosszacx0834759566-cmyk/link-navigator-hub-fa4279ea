@@ -1,6 +1,6 @@
 'use client';
 
-import { Satellite } from 'lucide-react';
+import { RotateCcw, Satellite } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { OloLinkState } from '@/hooks/use-ololink';
 import { formatT } from '@/hooks/use-ololink';
@@ -81,6 +81,16 @@ export function TopBar({ state }: { state: OloLinkState }) {
         <Stat label="Bandwidth" value={`${telemetry.bandwidth.toFixed(2)} Gbps`} mono />
         <Stat label="Availability" value={`${telemetry.availability.toFixed(2)}%`} mono />
       </div>
+
+      <button
+        type="button"
+        onClick={state.reset}
+        title="Reset all comms & laser links"
+        className="flex h-7 shrink-0 items-center gap-1.5 rounded-[6px] border border-rose-400/30 bg-rose-500/10 px-2.5 text-[9px] font-medium uppercase tracking-[0.2em] text-rose-300 transition-colors hover:bg-rose-500/20"
+      >
+        <RotateCcw className="h-3 w-3" />
+        Reset links
+      </button>
     </header>
   );
 }
