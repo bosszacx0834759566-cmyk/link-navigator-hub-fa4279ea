@@ -96,6 +96,8 @@ export interface OloLinkState {
   toggleLayer: (k: keyof OloLinkState['layers']) => void;
   setRunning: (v: boolean) => void;
   approve: () => void;
+  /** reset every comm/link signal: scenario, windows, routes, telemetry, clock */
+  reset: () => void;
 }
 
 
