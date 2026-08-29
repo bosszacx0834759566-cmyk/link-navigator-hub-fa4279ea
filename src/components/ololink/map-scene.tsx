@@ -301,7 +301,7 @@ export function MapScene({ state }: { state: OloLinkState }) {
       <svg
         ref={svgRef}
         viewBox={`0 0 ${MAP_W} ${MAP_H}`}
-        preserveAspectRatio="xMidYMid meet"
+        preserveAspectRatio="xMidYMid slice"
         className={cn(
           'h-full w-full touch-none select-none [&_text]:select-none',
           grabbing ? 'cursor-grabbing' : 'cursor-grab'
